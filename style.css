@@ -1,0 +1,10 @@
+#main-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+body{
+  color: black;
+  font-family:'Courier New', Courier, monospace;
+  
+}
