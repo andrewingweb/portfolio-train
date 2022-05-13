@@ -6,7 +6,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 const canvas = document.querySelector("#bg");
 const scene = new THREE.Scene();
 //scene.background = new THREE.Color(0xffe8dc);
-const railwayPicture = new THREE.TextureLoader().load("./background.jpg");
+const railwayPicture = new THREE.TextureLoader().load("./trainline.jpg");
 scene.background = railwayPicture;
 
 const sizes = {
@@ -71,8 +71,9 @@ const gltfLoader = new GLTFLoader();
 gltfLoader.load("./train/scene.gltf", (gltf) => {
   scene.add(gltf.scene);
   gltf.scene.scale.set(0.01, 0.01, 0.01);
-  gltf.scene.position.setX(10);
-  gltf.scene.position.setZ(20);
+  gltf.scene.position.setX(2.5);
+  gltf.scene.position.setY(2.5);
+  gltf.scene.position.setZ(-30);
   gltf.scene.rotateY(Math.PI / 2);
 });
 
@@ -95,9 +96,9 @@ function moveCamera() {
   andrew.rotation.y += 0.01;
   //andrew.rotation.z += 0.01;
 
-  camera.position.z = t * -0.01;
-  camera.position.x = t * -0.0002;
-  camera.position.y = t * -0.0002;
+  camera.position.z = t * 0.01;
+  camera.position.x = t * 0.0002;
+  camera.position.y = t * 0.0002;
 }
 document.body.onscroll = moveCamera;
 //const controls = new OrbitControls(camera, renderer.domElement);
