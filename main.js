@@ -1,11 +1,13 @@
 import "./style.css";
 import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 const canvas = document.querySelector("#bg");
 const scene = new THREE.Scene();
 //scene.background = new THREE.Color(0xffe8dc);
 const railwayPicture = new THREE.TextureLoader().load("./background.jpg");
-//scene.background = railwayPicture;
+scene.background = railwayPicture;
 
 const sizes = {
   width: window.innerWidth,
@@ -28,13 +30,13 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 
-const pointLight = new THREE.PointLight(0xbf408f);
+const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(5, -28.5, 5);
 
-const pointLight2 = new THREE.PointLight(0x00ffff);
+const pointLight2 = new THREE.PointLight(0xffffff);
 pointLight2.position.set(5, 5, 5);
 
-const ambient = new THREE.AmbientLight(0xff0000, 1);
+const ambient = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambient);
 
 scene.add(pointLight, pointLight2);
@@ -52,7 +54,7 @@ scene.add(andrew);
 const shapeGeo = new THREE.OctahedronGeometry(1, 0);
 const shapeMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
 const shapeMesh = new THREE.Mesh(shapeGeo, shapeMat);
-scene.add(shapeMesh);
+//scene.add(shapeMesh);
 
 const loader = new THREE.TextureLoader();
 const normalTexture = loader.load("./normal-map.jpeg");
@@ -64,9 +66,19 @@ const textureMaterial = new THREE.MeshStandardMaterial({
   emissive: 0x9152cc,
 });
 
+const gltfLoader = new GLTFLoader();
+
+gltfLoader.load("./train/scene.gltf", (gltf) => {
+  scene.add(gltf.scene);
+  gltf.scene.scale.set(0.01, 0.01, 0.01);
+  gltf.scene.position.setX(10);
+  gltf.scene.position.setZ(20);
+  gltf.scene.rotateY(Math.PI / 2);
+});
+
 const ballGeo = new THREE.SphereGeometry(4, 64, 64);
 const ball = new THREE.Mesh(ballGeo, textureMaterial);
-scene.add(ball);
+//scene.add(ball);
 ball.position.z = 0;
 ball.position.setX(-10);
 
@@ -81,7 +93,7 @@ function moveCamera() {
   camera.position.z += 0.05;
 
   andrew.rotation.y += 0.01;
-  andrew.rotation.z += 0.01;
+  //andrew.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -99,12 +111,3 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
-
-//const moveCamera = () => {
-//  const t = document.body.getBoundingClientRect().top;
-//  camera.position.z = t + 0.008 + 20;
-//  camera.position.y = t + 0.008;
-//  camera.position.x = t + 0.00095;
-//};
-
-//DocumentFragment.body.onscroll = moveCamera;

@@ -1,5 +1,5 @@
 import * as THREE from "./js/three.module.js";
-
+//import { GLTFLoader } from "./three/examples/js/loaders/GLTFLoader.js";
 //import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const canvas = document.querySelector("#bg");
@@ -68,6 +68,12 @@ const textureMaterial = new THREE.MeshStandardMaterial({
   normalMap: normalTexture,
   emissive: 0x9152cc,
 });
+
+let loader1 = new THREE.GLTFLoader();
+  loader1.load("./train/scene.gltf", function (gltf) {
+    scene.add(gltf.scene);
+  });
+
 
 const ballGeo = new THREE.SphereGeometry(4, 64, 64);
 const ball = new THREE.Mesh(ballGeo, textureMaterial);
