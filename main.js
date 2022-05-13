@@ -36,7 +36,7 @@ const shapeMesh = new THREE.Mesh(shapeGeo, shapeMat);
 scene.add(shapeMesh);
 
 const textureLoader = new THREE.TextureLoader();
-const normalTexture = textureLoader.load("/public/normal-map.jpeg");
+const normalTexture = textureLoader.load("./normal-map.jpeg");
 const textureMaterial = new THREE.MeshStandardMaterial({
   color: 0xffffff,
   metalness: 0.7,
@@ -56,11 +56,11 @@ function animate() {
 }
 animate();
 
-const moveCamera = () => {
-  const t = document.body.getBoundingClientRect().top;
-  camera.position.z = t + 0.008 + 20;
-  camera.position.y = t + 0.008;
-  camera.position.x = t + 0.00095;
-};
+//const moveCamera = () => {
+//  const t = document.body.getBoundingClientRect().top;
+//  camera.position.z = t + 0.008 + 20;
+//  camera.position.y = t + 0.008;
+//  camera.position.x = t + 0.00095;
+//};
 
-DocumentFragment.body.onscroll = moveCamera;
+//DocumentFragment.body.onscroll = moveCamera;
