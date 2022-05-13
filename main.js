@@ -4,9 +4,7 @@ import * as THREE from "three";
 const canvas = document.querySelector("#bg");
 const scene = new THREE.Scene();
 //scene.background = new THREE.Color(0xffe8dc);
-const railwayPicture = new THREE.TextureLoader().load(
-  "../dist/public/background.jpg"
-);
+const railwayPicture = new THREE.TextureLoader().load("../dist/background.jpg");
 //scene.background = railwayPicture;
 
 const sizes = {
@@ -41,9 +39,7 @@ scene.add(ambient);
 
 scene.add(pointLight, pointLight2);
 
-const andrewTexture = new THREE.TextureLoader().load(
-  "../dist/public/andrew.jpg"
-);
+const andrewTexture = new THREE.TextureLoader().load("../dist/andrew.jpg");
 
 const andrew = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
@@ -59,7 +55,7 @@ const shapeMesh = new THREE.Mesh(shapeGeo, shapeMat);
 scene.add(shapeMesh);
 
 const loader = new THREE.TextureLoader();
-const normalTexture = loader.load("../dist/public/normal-map.jpeg");
+const normalTexture = loader.load("../dist/normal-map.jpeg");
 const textureMaterial = new THREE.MeshStandardMaterial({
   color: 0xffffff,
   metalness: 0.7,
